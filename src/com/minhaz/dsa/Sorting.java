@@ -1,6 +1,10 @@
 package com.minhaz.dsa;
 
+import java.util.Arrays;
+
 public class Sorting {
+
+	private static int[] aux;
 	public static void BubbleSort(int arr[]) {
 		for(int i = 0; i < arr.length; i++) {
 			for(int j = 0; j < arr.length - i - 1; j++) {
@@ -29,6 +33,7 @@ public class Sorting {
 			mergeSort(arr, mid + 1, high); // recursively sort the sub-array using backtracking
 			merge(arr, low, mid, high); // combine the arrays
 		}
+
 	}
 	
 	private static void merge(int arr[], int low, int mid, int high) {
@@ -57,5 +62,45 @@ public class Sorting {
 		int temp = arr[left];
 		arr[left] = arr[right];
 		arr[right] = temp;
+	}
+
+//	public static int countingInversions(int[] arr){
+//
+//		aux = new int[arr.length];
+//		int inv = mergeSortAndCount(arr, aux, 0, arr.length - 1);
+//
+//	}
+
+	public static int SortAndCount(int[] a){
+		if(a.length == 1)
+			return 0;
+		int mid = a.length / 2;
+		int[] leftSubArray = Arrays.copyOfRange(a, 0, mid + 1);
+		int[] rightSubArray = Arrays.copyOfRange(a, mid, a.length);
+		int rA = SortAndCount(leftSubArray);
+		int rB = SortAndCount(rightSubArray);
+		int rC = mergeAndCount(leftSubArray, rightSubArray);
+
+		return rA + rB + rC;
+	}
+
+
+	private static int mergeAndCount(int[] leftSubArray, int[] rightSubArray) {
+		int length = leftSubArray.length + rightSubArray.length;
+		int k = 0;
+		int[] mergedArray = new int[length];
+		int currA = 0, currB = 0;
+		int invCounter = 0;
+		while (currA < leftSubArray.length && currB < rightSubArray.length){
+			if(leftSubArray[currA] < rightSubArray[currB]) mergedArray[k++] = leftSubArray[currA++];
+			else {
+				invCounter = leftSubArray.length - currA;
+				mergedArray[k++] = rightSubArray[currB++];
+			}
+		}
+
+		while (currA < leftSubArray.length) mergedArray[k++] = leftSubArray[currA++];
+		while (currB < rightSubArray.length) mergedArray[k++] = rightSubArray[currB++];
+		return invCounter;
 	}
 }
