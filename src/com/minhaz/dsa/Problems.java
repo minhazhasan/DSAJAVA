@@ -76,4 +76,23 @@ public class Problems {
 		LocalDate d = ym.atDay(1).with(TemporalAdjusters.dayOfWeekInMonth(2, DayOfWeek.TUESDAY));
 		return d;
 	}
+
+	public char firstNonRepeatingCharacters(String s){
+		Map<Character, Integer> freq = new LinkedHashMap<>();
+		char[] arr = s.toCharArray();
+		for(char c : arr){
+			freq.putIfAbsent(c, 0);
+			freq.computeIfPresent(c, (k, v) -> v + 1);
+		}
+
+		char res = '_';
+		for(Map.Entry<Character, Integer> entry : freq.entrySet()){
+			if(entry.getValue() == 1) {
+				res = entry.getKey();
+				break;
+			}
+		}
+
+		return res;
+	}
 }

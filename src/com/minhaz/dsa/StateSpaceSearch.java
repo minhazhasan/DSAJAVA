@@ -15,6 +15,7 @@ public class StateSpaceSearch {
         public Board parent = null;
         public int[][] goalBoard = getGoalBoard();
         private Map<Integer, Tuple<Integer, Integer>> goalBoardIndexMap;
+        public int pathCost = 0;
 
 
         public Board(int[][] blocks){
@@ -125,6 +126,10 @@ public class StateSpaceSearch {
           return misplacedTilesCounter;
         }
 
+        public int countInversions(){
+            return 0;
+        }
+
         private Tuple<Integer, Integer> createTuple(Integer x, Integer y){
             return new Tuple<>(x, y);
         }
@@ -223,8 +228,10 @@ public class StateSpaceSearch {
             for(Board nextAction : currBoard.successors()){
                 if(!visited.contains(nextAction)){
                     nextAction.parent = currBoard;
-                    if(nextAction.equals(goalBoard))
+                    if(nextAction.equals(goalBoard)) {
+                        System.out.println("Expanded Nodes: " + expanded);
                         return getMoves(nextAction);
+                    }
                     frontier.add(nextAction);
                 }
 
@@ -232,5 +239,19 @@ public class StateSpaceSearch {
         }
         System.out.println("Expanded Nodes: " + expanded);
         return -1;
+    }
+
+    public int aStarSlidingPuzzle(Board initialBoard){
+        return 0;
+    }
+
+    public void PriorityQueueTest(){
+        PriorityQueue<Tuple<Integer, String>> pq = new PriorityQueue<>();
+        pq.add(new Tuple<>(5, "UP"));
+        pq.add(new Tuple<>(2, "DOWN"));
+        pq.add(new Tuple<>(3, "LEFT"));
+        pq.add(new Tuple<>(6, "RIGHT"));
+
+        System.out.println(pq.peek());
     }
 }

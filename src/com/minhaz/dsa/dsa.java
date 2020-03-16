@@ -1,8 +1,6 @@
 package com.minhaz.dsa;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -81,18 +79,22 @@ public class dsa {
 		};
 
 
+//		int[] arr = {1, 8, 10, 9, 5, 4, 6};
+//		System.out.println("Number of inversions: " + Sorting.SortAndCount(arr));
 
 
-//		StateSpaceSearch serachProblems = new StateSpaceSearch(arr2);
+//		StateSpaceSearch serachProblems = new StateSpaceSearch(arr1);
 //		int moves = serachProblems.bfsSlidingPuzzle(serachProblems.board);
 //		System.out.println(moves);
 
+
+
 		//System.out.println();
+		//Sorting.quicksort(IntStream.of(nums).boxed().toArray(Integer[]::new));
+//		Problems prob = new Problems();
+//		System.out.println(prob.firstNonRepeatingCharacters("abacabad"));
 
-
-
-
-
+		System.out.println(BitManipulation.isPowerOf2(64));
 	}
 }
 
