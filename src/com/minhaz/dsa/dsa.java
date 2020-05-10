@@ -1,8 +1,6 @@
 package com.minhaz.dsa;
 
 import java.util.*;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class dsa {
 
@@ -79,7 +77,67 @@ public class dsa {
 		};
 
 
-//		int[] arr = {1, 8, 10, 9, 5, 4, 6};
+		int[] arr = {1, 8, 10, 9,4,8,9,4,3,1,7,8, 5, 4, 6};
+		//Sorting.Quick3Way(arr, 0, arr.length - 1);
+//		Sorting.quicksort(arr);
+//		printArray(arr);
+//		int[] arr11 = {20, 10, 40, 25, 30, 20};
+//		int[][] arrSp = {};
+//		Problems prb = new Problems();
+		//prb.spiralMatrix(4);
+		//System.out.println(prb.spiralPrint(arrSp).toString());
+		//prb.twoSumSorted(arr11, 8);
+
+//		int[] res = AmazonProblems.FindPairWithGivenSum(arr11, 90);
+//		System.out.println(AmazonProblems.twoSumUniquePairs(new int[]{1,5,1,5}, 6));
+
+		int[][] matrix = {
+				{0,1,1,0},
+				{1,0,0,1},
+				{1,0,0,0},
+				{0,1,0,0}
+		};
+
+		int[][] matrix1 = {
+				{0,1,0,0,0},
+				{1,0,1,0,0},
+				{0,1,0,0,0},
+				{0,0,0,0,1},
+				{0,0,0,1,0}
+		};
+
+		int[][] diGraph = {
+				{0, 0, 1, 1, 0},
+				{1, 0, 0, 0, 0},
+				{0, 1, 0, 0, 0},
+				{0, 0, 0, 0, 1},
+				{0, 0, 0, 0, 0},
+		};
+
+		int[][] diGraph1 = {
+				{0,1,0,0,0,0},
+				{0,0,1,0,1,0},
+				{0,0,0,1,0,0},
+				{1,0,0,0,0,0},
+				{0,0,0,0,0,1},
+				{0,0,0,0,1,0}
+		};
+
+		int[][] diGraph2 = {
+				{1, 1, 0, 0, 0},
+				{1, 1, 0, 0, 0},
+				{0, 0, 1, 0, 0},
+				{0, 0, 0, 1, 1}
+		};
+
+
+		//System.out.println(GraphProblems.DFS(matrix));
+		//System.out.println(GraphProblems.DFSRec(matrix));
+
+		//System.out.println(GraphProblems.CC(matrix1));
+		//System.out.println(GraphProblems.SCC(diGraph1));
+		//System.out.println(GraphProblems.CC(diGraph2));
+		//System.out.println(Sorting.quickSelect(arr11, 2));
 //		System.out.println("Number of inversions: " + Sorting.SortAndCount(arr));
 
 
@@ -91,10 +149,106 @@ public class dsa {
 
 		//System.out.println();
 		//Sorting.quicksort(IntStream.of(nums).boxed().toArray(Integer[]::new));
-//		Problems prob = new Problems();
+		Problems prob = new Problems();
+//		LocalDate ld = LocalDate.of(2016, 2, 12);
+//		String week = ld.getDayOfWeek().toString();
+//		String formattedWeek = week.substring(0,1) + week.substring(1).toLowerCase();
+		//System.out.println(formattedWeek);
+//		System.out.println(prob.buySellStockDC(new int[]{1,2,3,4}));
+//		System.out.println(prob.plusOne(new LinkedList<Integer>(Arrays.asList(9,9,9))));
+//		assert 5 == prob.buySellStockDC(new int[]{7,1,5,3,6,4});
+//		System.out.println(DP.CoinChange(3));
+//		System.out.println(DP.CoinChangeBottomUp(11, new int[]{2,3,5}));
+//		System.out.println(DP.Z1Kanpsack(new int[]{2,3,6}, new int[]{3,4,10}, 20));
+//		System.out.println(DP.biomialCoefficient(6, 3));
+//		System.out.println(DP.editDistance("r", "r"));
+//		System.out.println(DP.LIS(new int[]{-1,3,4,5,2,2,2,2}));
+//		System.out.println(DP.maximumSumSubArray(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4}));
+		System.out.println(DP.MaximalRectangleDP(new int[][]{
+				{3,1,2},
+				{2,4,1},
+				{-2,-2,-1}
+		}));
+//		System.out.println(DP.editDistanceBottomUp("Horse", "ros"));
 //		System.out.println(prob.firstNonRepeatingCharacters("abacabad"));
+		//System.out.println(BitManipulation.isPowerOf2(64));
+//		List<Integer> a = Arrays.asList(5, 6, 7);
+//		List<Integer> b = Arrays.asList(3, 6, 10);
+//		List<Integer> grades = Arrays.asList(73, 67, 38, 33);
 
-		System.out.println(BitManipulation.isPowerOf2(64));
+		//miniMaxSum(new int[]{942381765, 627450398, 954173620, 583762094, 236817490});
+		//compareTriplets(a, b);
+		//gradingStudents(grades);
+
+//		String[] words = {"boy", "book", "border", "cat", "dog", "doctor", "fine", "finest", "figure", "pick", "pickle", "picture"};
+//		String[] words1 = {"dog", "doctor", "fine", "finest", "figure"};
+//		Trie trie = new Trie();
+//		trie.createTrie(words1);
+//		trie.preOrderTraverse();
+//		System.out.println(trie.lookup("border"));
+//		System.out.println(trie.lookup("boost"));
+//		System.out.println(trie.lookup(null));
+
+		//System.out.println(DP.fiboMemo(5));
+		//System.out.println(DP.fiboBottomUp(5));
+
+
+	}
+	static void readFromFile(){
+
+	}
+	static void printArray(int[] arr){
+		for(int i = 0; i < arr.length; i++){
+			System.out.print(arr[i]);
+			if(i == arr.length - 1) break;
+			System.out.print(", ");
+		}
+
+		System.out.print("\n");
+	}
+
+	static List<Integer> compareTriplets(List<Integer> a, List<Integer> b) {
+		List<Integer> counters = new ArrayList<>();
+		int counterA = 0, counterB = 0;
+		for(int i = 0; i < a.size(); i++){
+			counterA += (a.get(i) > b.get(i)) ? 1 : (a.get(i) == b.get(i)) ? 0 : counterB++;
+		}
+		counters.add(counterA);
+		counters.add(counterB);
+
+		return counters;
+	}
+
+	static void miniMaxSum(int[] arr) {
+		long totalSum = 0L;
+		for(long i : arr)
+			totalSum += i;
+
+		int i = 0;
+		long maxSum = totalSum - arr[i];
+		long minSum = totalSum - arr[i];
+
+		while (++i < arr.length){
+			long localVal = totalSum - arr[i];
+			maxSum = (localVal > maxSum) ? localVal : maxSum;
+			minSum = (localVal < minSum) ? localVal : minSum;
+		}
+		System.out.println(minSum + " " + maxSum);
+	}
+
+	public static List<Integer> gradingStudents(List<Integer> grades) {
+		// Write your code here
+		for(int i = 0; i < grades.size(); i++){
+
+			int grade = grades.get(i);
+
+			int nextMultipleOf5 = (int)Math.ceil(grade / 5.0) * 5;
+			int gradeDiff = nextMultipleOf5 - grade;
+			if(gradeDiff < 3 && grade >= 38)
+				grades.set(i, nextMultipleOf5);
+		}
+
+		return grades;
 	}
 }
 

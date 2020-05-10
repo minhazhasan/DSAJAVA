@@ -35,7 +35,6 @@ public class Sorting {
 			mergeSort(arr, mid + 1, high); // recursively sort the sub-array using backtracking
 			merge(arr, low, mid, high); // combine the arrays
 		}
-
 	}
 	
 	private static void merge(int arr[], int low, int mid, int high) {
@@ -56,22 +55,73 @@ public class Sorting {
 		}
 	}
 	
-//	public static void quicksort(Integer[] arr) {
-//		shuffle(arr);
-//		quicksort(arr, 0, arr.length - 1);
-//	}
+	public static void quicksort(int[] arr) {
+		shuffle(arr);
+		quicksort(arr, 0, arr.length - 1);
+	}
+
+	public static void Quick3Way(int[] arr, int lo, int hi){
+		if(hi <= lo) return;
+		int lt = lo, i = lo + 1, gt = hi;
+		int v = arr[lo];
+		while (i <= gt){
+
+			if(arr[i] < v) swap(arr, lt++, i++);
+			else if(arr[i] > v) swap(arr, i, gt--);
+			else i++;
+		}
+
+		Quick3Way(arr, lo, lt - 1);
+		Quick3Way(arr, gt + 1, hi);
+	}
 
 
-//	public static void quicksort(Integer arr[], int lo, int hi){
-//		if(hi <= lo)
-//			return;
-//	}
+	public static void quicksort(int[] arr, int lo, int hi){
+		if(hi <= lo)
+			return;
+		int j = partition(arr, lo, hi);
+		quicksort(arr, lo, j - 1);
+		quicksort(arr, j + 1, hi);
+	}
 
-	private static void shuffle(Object[] a){
+	public static int quickSelect(int[] arr, int k){
+		int n = arr.length;
+		shuffle(arr);
+		int lo = 0, hi = n - 1, kthLargeIdx = n - k;
+		while (hi > lo){
+
+			int j = partition(arr, lo, hi);
+			if(j == kthLargeIdx) return arr[kthLargeIdx];
+			else if(j > kthLargeIdx) hi = j - 1;
+			else if(j < kthLargeIdx) lo = j + 1;
+		}
+
+		return arr[kthLargeIdx];
+
+	}
+
+	private static int partition(int[] arr, int lo, int hi) {
+
+		//Partition into a[lo....i-1], a[i], a[i+1....hi].
+		int i = lo, j = hi + 1; // left and right scan indices.
+		Integer pivot = arr[lo];
+		while (true){
+			while (arr[++i] < pivot) if(i == hi) break;
+			while (pivot < arr[--j]) if(j == lo) break;
+			if(i >= j) break;
+			swap(arr, i, j);
+		}
+
+		swap(arr, lo, j);
+		return j;
+	}
+
+
+	private static void shuffle(int[] a){
 		int n = a.length;
 		for(int i = 0; i < n; i++){
 			int r = i + (int)(Math.random() * (n - i));
-			Object swap = a[r];
+			int swap = a[r];
 			a[r] = a[i];
 			a[i] = swap;
 		}
