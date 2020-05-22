@@ -2,6 +2,8 @@ package com.minhaz.dsa;
 
 import java.util.*;
 
+import static com.minhaz.dsa.ArrayProblems.Color;
+
 public class dsa {
 
 	public static void main(String[] args) throws Exception {
@@ -78,6 +80,7 @@ public class dsa {
 
 
 		int[] arr = {1, 8, 10, 9,4,8,9,4,3,1,7,8, 5, 4, 6};
+		System.out.println();
 		//Sorting.Quick3Way(arr, 0, arr.length - 1);
 //		Sorting.quicksort(arr);
 //		printArray(arr);
@@ -87,6 +90,19 @@ public class dsa {
 		//prb.spiralMatrix(4);
 		//System.out.println(prb.spiralPrint(arrSp).toString());
 		//prb.twoSumSorted(arr11, 8);
+//		List<ArrayProblems.Color> colors = Arrays.asList(Color.RED, Color.BLUE,
+//				Color.WHITE, Color.RED, Color.WHITE, Color.RED, Color.BLUE, Color.BLUE, Color.RED);
+//
+//		ArrayProblems.DutchFlagPartitioning(colors);
+//		for (Color c :
+//				colors) {
+//			System.out.print(c + " ");
+//		}
+//		System.out.print("\n");
+
+		System.out.println(ArrayProblems.BinaryAddition("00000", "001"));
+
+
 
 //		int[] res = AmazonProblems.FindPairWithGivenSum(arr11, 90);
 //		System.out.println(AmazonProblems.twoSumUniquePairs(new int[]{1,5,1,5}, 6));
@@ -164,11 +180,11 @@ public class dsa {
 //		System.out.println(DP.editDistance("r", "r"));
 //		System.out.println(DP.LIS(new int[]{-1,3,4,5,2,2,2,2}));
 //		System.out.println(DP.maximumSumSubArray(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4}));
-		System.out.println(DP.MaximalRectangleDP(new int[][]{
-				{3,1,2},
-				{2,4,1},
-				{-2,-2,-1}
-		}));
+//		System.out.println(DP.MaximalRectangleDP(new int[][]{
+//				{3,1,2},
+//				{2,4,1},
+//				{-2,-2,-1}
+//		}));
 //		System.out.println(DP.editDistanceBottomUp("Horse", "ros"));
 //		System.out.println(prob.firstNonRepeatingCharacters("abacabad"));
 		//System.out.println(BitManipulation.isPowerOf2(64));
@@ -192,6 +208,14 @@ public class dsa {
 		//System.out.println(DP.fiboMemo(5));
 		//System.out.println(DP.fiboBottomUp(5));
 
+//		System.out.println(BitManipulation.parity(7));
+//		System.out.println(BitManipulation.parity(7));
+
+//		System.out.println(Strings.stoi("-123"));
+//		System.out.println(Strings.itos(-58521324));
+//		System.out.println(Strings.baseConversion("61532", 7, 16));
+//		System.out.println(Strings.SpreadSheetColumnDecoding("ZZ"));
+//		System.out.println(Strings.SpreadSheetColumnEncoding(4));
 
 	}
 	static void readFromFile(){
