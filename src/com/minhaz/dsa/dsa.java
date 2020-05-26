@@ -60,7 +60,10 @@ public class dsa {
 //		System.out.println(ArrayProblems.minStepNeededToAdvArray(new int[]{3,3,1,0,2,0,1}));
 //		printArray(ArrayProblems.deleteDuplicates(new int[]{2,2,3,5,6,6,7}));
 //		printArray(ArrayProblems.deleteDuplciatesAtMost(new int[]{2,2,2,2,3,5,6,6,6,8,8,8}, 2));
-		System.out.println(ArrayProblems.BuySellStockOnce(new int[]{310,210, 275, 275, 260, 260, 260, 230, 230, 250}));
+//		System.out.println(ArrayProblems.BuySellStockOnce(new int[]{310,210, 275, 275, 260, 260, 260, 230, 230, 250}));
+		System.out.println(ArrayProblems.BuySellStockAtMostTwice(new int[]{12,11,13,9,12,8,14,13,15}));
+		System.out.println(ArrayProblems.BuySellStockAtMostTwice2(new int[]{12,11,13,9,12,8,14,13,15}));
+		System.out.println(ArrayProblems.BuySellStockAtMostTwice3(new int[]{12,11,13,9,12,8,14,13,15}));
 		//Backtracking.generateSubSetsFromBinary(nums, Backtracking.generateSubsets(3));
 		//System.out.println(Backtracking.generatePermutations("abcd").toString());
 //		FileTests file = new FileTests();

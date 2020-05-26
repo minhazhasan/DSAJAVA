@@ -221,12 +221,62 @@ public class ArrayProblems {
 		return maxProfit;
 	}
 
+	// Buy Sell Stock at most 2 times (T(n) = O(n^2), Space = O(1))
 	public static int BuySellStockAtMostTwice(int[] nums){
 		int maxProfit = 0;
 		for (int i = 1; i < nums.length; i++){
 			maxProfit = Math.max(maxProfit,
-					BuySellStockOnce(Arrays.copyOfRange(nums, 0, i)) + BuySellStockOnce(Arrays.copyOfRange(nums, i + 1, nums.length)));
+					BuySellStockOnce(Arrays.copyOfRange(nums, 0, i)) + BuySellStockOnce(Arrays.copyOfRange(nums, i, nums.length)));
 		}
+		return maxProfit;
+	}
+
+	// Buy Sell Stock at most 2 times (T(n) = O(n), Space = O(n))
+	public static int BuySellStockAtMostTwice2(int[] nums){
+		int maxProfit = Integer.MIN_VALUE;
+		int[] firstBuySellProfits = new int[nums.length];
+		int minPrice = Integer.MAX_VALUE;
+
+		for (int i = 0; i < nums.length; i++){
+			minPrice = Math.min(minPrice, nums[i]);
+			maxProfit = Math.max(maxProfit, nums[i] - minPrice);
+			firstBuySellProfits[i] = maxProfit;
+		}
+		int maxPrice = Integer.MIN_VALUE;
+		for (int i = nums.length - 1; i >= 0; i--){
+			maxPrice = Math.max(maxPrice, nums[i]);
+			int previousDayProfit = (i - 1) < 0 ? 0 : firstBuySellProfits[i - 1];
+			maxProfit = Math.max(maxProfit, (maxPrice - nums[i]) + previousDayProfit);
+		}
+
+		return maxProfit;
+	}
+
+	// Buy Sell Stock at most 2 times (T(n) = O(n) , Space = O(1))
+	public static int BuySellStockAtMostTwice3(int[] nums){
+		int bestBuyIndex = 0, bestSellIndex = 0, maxProfit = 0, minPrice = Integer.MAX_VALUE;
+		for (int i = 0; i < nums.length; i++){
+			if(nums[i] < minPrice){
+				bestBuyIndex = i;
+				minPrice = nums[i];
+			}
+
+			int profit = nums[i] - minPrice;
+
+			if(profit > maxProfit){
+				bestSellIndex = i;
+				maxProfit = profit;
+			}
+		}
+
+		if(bestBuyIndex > 0){
+			maxProfit = Math.max(maxProfit, maxProfit + BuySellStockOnce(Arrays.copyOfRange(nums, 0, bestBuyIndex)));
+		}
+
+		if (bestSellIndex < nums.length - 1){
+			maxProfit = Math.max(maxProfit, maxProfit + BuySellStockOnce(Arrays.copyOfRange(nums, bestSellIndex + 1, nums.length)));
+		}
+
 		return maxProfit;
 	}
 
