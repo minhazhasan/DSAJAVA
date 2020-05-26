@@ -50,7 +50,17 @@ public class dsa {
 //		System.out.println(prb.RPN(tokens));
 //		
 //		System.out.println(prb.dateFromYear(2015));
-		int[] nums = {1, 2, 3};
+		Integer[] nums = {9, 9, 9};
+//		List<Integer> plusOne = ArrayProblems.plusOne(new LinkedList<>(Arrays.asList(nums)));
+//		int[] result = ArrayProblems.multiply(new int[]{1,9,3,7,0,7,7,2,1}, new int[]{-7,6,1,8,3,8,2,5,7,2,8,7});
+//
+//		printArray(result);
+
+		//System.out.println(ArrayProblems.advArray(new int[]{3,2,0,0,2,0,1}));
+//		System.out.println(ArrayProblems.minStepNeededToAdvArray(new int[]{3,3,1,0,2,0,1}));
+//		printArray(ArrayProblems.deleteDuplicates(new int[]{2,2,3,5,6,6,7}));
+//		printArray(ArrayProblems.deleteDuplciatesAtMost(new int[]{2,2,2,2,3,5,6,6,6,8,8,8}, 2));
+		System.out.println(ArrayProblems.BuySellStockOnce(new int[]{310,210, 275, 275, 260, 260, 260, 230, 230, 250}));
 		//Backtracking.generateSubSetsFromBinary(nums, Backtracking.generateSubsets(3));
 		//System.out.println(Backtracking.generatePermutations("abcd").toString());
 //		FileTests file = new FileTests();
@@ -100,7 +110,7 @@ public class dsa {
 //		}
 //		System.out.print("\n");
 
-		System.out.println(ArrayProblems.BinaryAddition("00000", "001"));
+		//System.out.println(ArrayProblems.BinaryAddition("00000", "001"));
 
 
 
