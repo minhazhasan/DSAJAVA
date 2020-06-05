@@ -2,8 +2,6 @@ package com.minhaz.dsa;
 
 import java.util.*;
 
-import static com.minhaz.dsa.ArrayProblems.Color;
-
 public class dsa {
 
 	public static void main(String[] args) throws Exception {
@@ -61,9 +59,21 @@ public class dsa {
 //		printArray(ArrayProblems.deleteDuplicates(new int[]{2,2,3,5,6,6,7}));
 //		printArray(ArrayProblems.deleteDuplciatesAtMost(new int[]{2,2,2,2,3,5,6,6,6,8,8,8}, 2));
 //		System.out.println(ArrayProblems.BuySellStockOnce(new int[]{310,210, 275, 275, 260, 260, 260, 230, 230, 250}));
-		System.out.println(ArrayProblems.BuySellStockAtMostTwice(new int[]{12,11,13,9,12,8,14,13,15}));
-		System.out.println(ArrayProblems.BuySellStockAtMostTwice2(new int[]{12,11,13,9,12,8,14,13,15}));
-		System.out.println(ArrayProblems.BuySellStockAtMostTwice3(new int[]{12,11,13,9,12,8,14,13,15}));
+//		System.out.println(ArrayProblems.BuySellStockAtMostTwice(new int[]{12,11,13,9,12,8,14,13,15}));
+//		System.out.println(ArrayProblems.BuySellStockAtMostTwice2(new int[]{12,11,13,9,12,8,14,13,15}));
+//		System.out.println(ArrayProblems.BuySellStockAtMostTwice3(new int[]{12,11,13,9,12,8,14,13,15}));
+//		System.out.println(ArrayProblems.applyPermutation(new LinkedList<String>(Arrays.asList("a", "b", "c", "d")), new LinkedList<Integer>(Arrays.asList(2,0,1,3))));
+//		System.out.println(ArrayProblems.applyPermutation(new LinkedList<String>(Arrays.asList("a", "b", "c", "d", "e")), new LinkedList<Integer>(Arrays.asList(4,3,2,0,1))));
+//		List<Integer> list = new LinkedList<>(Arrays.asList(3,5,7,11));
+//		List<Double> probabilities = new LinkedList<>(Arrays.asList(9/18d, 6/18d, 2/18d, 1/18d));
+//		System.out.println(ArrayProblems.nonUniformRandomNumberGeneration(list, probabilities));
+
+		//System.out.println(ArrayProblems.nextPermutation(list));
+		//ArrayProblems.offlineRandomSampling(list, 2);
+		//System.out.println(ArrayProblems.onlineRandomSampling(list.iterator(), 3));
+//		System.out.println(ArrayProblems.randomPermutation(3));
+		//System.out.println(ArrayProblems.generateRandomSubset(100, 3));
+		//System.out.println(list);
 		//Backtracking.generateSubSetsFromBinary(nums, Backtracking.generateSubsets(3));
 		//System.out.println(Backtracking.generatePermutations("abcd").toString());
 //		FileTests file = new FileTests();

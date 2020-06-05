@@ -252,6 +252,18 @@ public class Problems {
 		return 0;
 	}
 
+	public int binaryGap(int N){
+		int i = 0, j = 0, gap = 0;
+		int oneCount = 0;
+		while (N != 0){
+			int rem = N % 2;
+			if(rem == 1) oneCount += 1;
+			if(oneCount < 2) i++;
+		}
+
+		return 0;
+	}
+
 
 
 

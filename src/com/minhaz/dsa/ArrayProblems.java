@@ -1,6 +1,5 @@
 package com.minhaz.dsa;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class ArrayProblems {
@@ -115,10 +114,6 @@ public class ArrayProblems {
 				 result[k--] = sum % 10;
 				 result[k] = result[k] + sum / 10;
 			}
-//			if(carry > 0){
-//				result[k] = carry;
-//				carry = 0;
-//			}
 			rt--;
 		}
 
@@ -279,6 +274,216 @@ public class ArrayProblems {
 
 		return maxProfit;
 	}
+
+	public static List<String> applyPermutation(List<String> nums, List<Integer> perm){
+		for (int i = 0; i < perm.size(); i++){
+			int j = perm.get(i);
+			while (j != i) {
+				Collections.swap(nums, i, j);
+				Collections.swap(perm, i, j);
+				j = perm.get(i);
+			}
+		}
+		return nums;
+	}
+
+	// The key insight is that we want to increase the permutation by as little as possible.
+	// for that, we need to find longest decreasing suffix.
+	// swap the element immediate before the suffix with the min element that is larger than that element;
+	// reverse the suffix to maintain the change as little as possible.
+	public static List<Integer> nextPermutation(List<Integer> perm){
+		int k = perm.size() - 2;
+		while (k >= 0 && perm.get(k) > perm.get(k + 1)) k--;
+		if(k == -1) return Collections.emptyList();
+		int minIndex = perm.indexOf(Collections.min(perm.subList(k + 1, perm.size())));
+		Collections.swap(perm, k, minIndex);
+		Collections.reverse(perm.subList(k + 1, perm.size()));
+
+		return perm;
+	}
+
+	public static List<Integer> prevPermutation(List<Integer> perm){
+		int k = perm.size() - 2;
+		while (k >= 0 && perm.get(k) < perm.get(k + 1)) k--;
+		if(k == -1) return Collections.emptyList();
+		int minIndex = perm.indexOf(Collections.min(perm.subList(k + 1, perm.size())));
+		Collections.swap(perm, k, minIndex);
+		Collections.reverse(perm.subList(k + 1, perm.size()));
+
+		return perm;
+	}
+
+	public static void offlineRandomSampling(List<Integer> data, int k){
+		Random rand = new Random();
+		for (int i = 0; i < k; i++){
+			Collections.swap(data, i, i + rand.nextInt(data.size() - i));
+		}
+	}
+
+	public static List<Integer> onlineRandomSampling(Iterator<Integer> sequence, int k){
+		List<Integer> runningSample = new ArrayList<>();
+		for (int i = 0; sequence.hasNext() && i < k; i++){
+			runningSample.add(sequence.next());
+		}
+
+		int numSeenSoFar = k;
+		Random rand = new Random();
+		while (sequence.hasNext()){
+			int x = sequence.next();
+			numSeenSoFar += 1;
+			final int idxToReplace = rand.nextInt(numSeenSoFar);
+			if(idxToReplace < k) runningSample.set(idxToReplace, x);
+		}
+		return runningSample;
+	}
+
+	public static List<Integer> randomPermutation(int n){
+		List<Integer> data = new ArrayList<>();
+		Random random = new Random();
+		for (int i = 1; i <= n; i++){
+			data.add(i);
+		}
+
+		Collections.shuffle(data);
+		return data;
+	}
+
+	public static List<Integer> generateRandomSubset(int n, int k){
+//		List<Integer> data = new ArrayList<>();
+//		for (int i = 1; i <= n; i++) data.add(i);
+//		offlineRandomSampling(data, k);
+//		return data.subList(0, k);
+
+		Map<Integer, Integer> pairs = new HashMap<>();
+		Random randNextGen = new Random();
+		for(int i = 0; i < k; i++){
+
+			int randIndx = i + randNextGen.nextInt(n - i);
+			Integer ptr1 = pairs.get(randIndx);
+			Integer ptr2 = pairs.get(i);
+
+			if(ptr1 == null && ptr2 == null){
+				pairs.put(i, randIndx);
+				pairs.put(randIndx, i);
+			}
+			else if(ptr1 != null && ptr2 == null){
+				pairs.put(randIndx, i);
+				pairs.put(i, ptr1);
+			}
+			else if(ptr2 != null && ptr1 == null){
+				pairs.put(randIndx, ptr2);
+				pairs.put(i, randIndx);
+			}
+			else {
+				pairs.put(randIndx, ptr2);
+				pairs.put(i, ptr1);
+			}
+
+		}
+
+		List<Integer> result = new ArrayList<>(k);
+		for (int i = 0; i < k; i++){
+			result.add(pairs.get(i));
+		}
+
+		return result;
+	}
+
+	public static int nonUniformRandomNumberGeneration(List<Integer> values, List<Double> probabilities){
+		List<Double> prefixSumProbabilities = new ArrayList<>();
+		prefixSumProbabilities.add(0.0);
+
+		// Creating endpoints for the intervals corresponding to the probabilities.
+		for (double p : probabilities){
+			prefixSumProbabilities.add(prefixSumProbabilities.get(prefixSumProbabilities.size() - 1) + p);
+		}
+
+		Random r = new Random();
+
+		// random number between [0.0, 1.0]
+		final double uniform01 = r.nextDouble();
+
+		// find the index of the interval that uniform01 lies in.
+		int it = Collections.binarySearch(prefixSumProbabilities, uniform01);
+
+		if(it < 0){
+
+			// we want the index of the first element in the array which is
+			// greater than the key.
+			//
+			// When a key is not present in the array, Collections.binarySearch()
+			// returns the negative of 1 plus the smallest index whose entry
+			// is greater than the key.
+			//
+			// Therefore. if the return value is negative, by taking its absolute
+			// value and adding 1 to it, we get the desired index.
+			final int intervalIdx = (Math.abs(it) - 1) - 1;
+			return values.get(intervalIdx);
+		} else {
+			return values.get(it);
+		}
+	}
+
+	// Multidimensional Arrays
+
+	// Valid Sudoku Problem
+	public static boolean validSudoku(int[][] partialBoard){
+		// check row constraints
+		for (int i = 0; i < partialBoard.length; i++){
+			if (checkDuplicate(partialBoard, i, i + 1, 0, partialBoard[1].length)) return false;
+		}
+
+		// check column constraints
+		for(int j = 0; j < partialBoard[1].length; j++){
+			if (checkDuplicate(partialBoard, 0, partialBoard.length, j, j + 1)) return false;
+		}
+
+		// check sub-grid
+		int region = (int) Math.sqrt(partialBoard.length);
+		for (int I = 0; I < region; I++){
+			for(int J = 0; J < region; J++){
+				if(checkDuplicate(partialBoard, I * region, (I + 1) * region,
+						J * region, (J + 1) * region)) return false;
+			}
+		}
+
+		return true;
+	}
+
+	private static boolean checkDuplicate(int[][] partialBoard, int startRow, int endRow, int startCol, int endCol) {
+		Set<Integer> set = new HashSet<>();
+		for (int i = startRow; i < endRow; i++){
+			for(int j = startCol; j < endCol; j++){
+				int digit = partialBoard[i][j];
+				if(digit != 0){
+					if(!set.contains(digit)) set.add(digit);
+					else return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public static List<Integer> SpiralOrder(int[][] matrix){
+		int left = 0, right = matrix[0].length - 1;
+		int top = 0, bottom = matrix.length - 1;
+		List<Integer> spiralMatrix = new ArrayList<>();
+
+		while (left <= right && top <= bottom){
+			for (int i = left; i <= right; i++) spiralMatrix.add(matrix[top][i]);
+			top++;
+			for (int i = top; i <= bottom; i++) spiralMatrix.add(matrix[i][right]);
+			right--;
+			for (int i = right; i >= left; i--) spiralMatrix.add(matrix[bottom][i]);
+			bottom--;
+			for (int i = bottom; i >= top; i--) spiralMatrix.add(matrix[i][left]);
+			left--;
+		}
+
+		return spiralMatrix;
+	}
+
 
 	public static int longestEqualEntries(int[] nums){
 		int longestLength = 1, j = 0, localLength = 1;
