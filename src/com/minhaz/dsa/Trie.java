@@ -1,7 +1,5 @@
 package com.minhaz.dsa;
 
-import com.sun.jdi.event.StepEvent;
-
 import java.util.*;
 
 public class Trie {
@@ -114,7 +112,7 @@ public class Trie {
 
         // dfs traversal, start with root left right
 
-        List<String> words = new ArrayList<>(){
+        List<String> words = new ArrayList<String>(){
             @Override
             public String toString() {
                 StringBuilder builder = new StringBuilder();
