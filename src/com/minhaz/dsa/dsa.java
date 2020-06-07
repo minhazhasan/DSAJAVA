@@ -64,12 +64,19 @@ public class dsa {
 //		System.out.println(ArrayProblems.BuySellStockAtMostTwice3(new int[]{12,11,13,9,12,8,14,13,15}));
 //		System.out.println(ArrayProblems.applyPermutation(new LinkedList<String>(Arrays.asList("a", "b", "c", "d")), new LinkedList<Integer>(Arrays.asList(2,0,1,3))));
 //		System.out.println(ArrayProblems.applyPermutation(new LinkedList<String>(Arrays.asList("a", "b", "c", "d", "e")), new LinkedList<Integer>(Arrays.asList(4,3,2,0,1))));
-		int[][] spiralMatrix = {
-			{1,2,3,10},
-			{4,5,6,11},
-			{7,8,9,12}
+		int[][] matrixSpiral = {
+			{1,2,3},
+			{4,5,6},
+			{7,8,9}
 		};
-		System.out.println(ArrayProblems.SpiralOrder(spiralMatrix));
+		// System.out.println("Spiral Order 1: " + ArrayProblems.SpiralOrder(matrixSpiral));
+		// System.out.println("Spiral Order 2: " + ArrayProblems.SpiralOrder2(matrixSpiral));
+
+		//int[][] arrRotated = ArrayProblems.RotateMatrix(matrixSpiral);
+		//System.out.println(arrRotated);
+
+		System.out.println(ArrayProblems.PascalsTriangle(5));
+		System.out.println(ArrayProblems.NthRowPascalsTriangle(5));
 //		List<Integer> list = new LinkedList<>(Arrays.asList(3,5,7,11));
 //		List<Double> probabilities = new LinkedList<>(Arrays.asList(9/18d, 6/18d, 2/18d, 1/18d));
 //		System.out.println(ArrayProblems.nonUniformRandomNumberGeneration(list, probabilities));

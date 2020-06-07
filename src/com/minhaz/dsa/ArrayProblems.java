@@ -484,6 +484,87 @@ public class ArrayProblems {
 		return spiralMatrix;
 	}
 
+	public static List<Integer> SpiralOrder2(int[][] matrix){
+		final int[][] SHIFT = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+		int dir = 0, x = 0, y = 0;
+		int cols = matrix[0].length;
+		int rows = matrix.length;
+		List<Integer> spiralOrdering = new ArrayList<>();
+		for(int i = 0; i < matrix.length * matrix[0].length; i++){
+			spiralOrdering.add(matrix[x][y]);
+			matrix[x][y] = 0;
+			int nextX = x + SHIFT[dir][0]; 
+			int nextY = y + SHIFT[dir][1];
+			if(nextX < 0 || nextX >= rows || nextY >= cols 
+						 || nextY < 0 || matrix[nextX][nextY] == 0){
+				
+				dir = (dir + 1) % 4;
+				nextX = x + SHIFT[dir][0];
+				nextY = y + SHIFT[dir][1];			
+			}
+
+			x = nextX;
+			y = nextY;
+		}
+
+		return spiralOrdering;
+	}
+
+	public static int[][] RotateMatrix(int[][] matrix){
+		final int size = matrix.length - 1;
+		for(int i = 0; i < (matrix.length / 2); i++){
+			for(int j = i; j < size - i; j++){
+				int temp1 = matrix[i][j];
+				
+				matrix[i][j] = matrix[size - j][i];
+				matrix[size - j][i] = matrix[size - i][size - j];
+				matrix[size - i][size - j] = matrix[j][size - i];
+				matrix[j][size - i] = temp1;
+
+
+			}
+		}
+
+		return matrix;
+	}
+
+	public static List<List<Integer>> PascalsTriangle(int numRows){
+		List<List<Integer>> triangleMatrix = new ArrayList<>();
+		
+
+		for(int i = 0; i < numRows; i++){
+			List<Integer> innerList = new ArrayList<>();
+			int j = 0;
+			while(j <= i){
+				if(j > 0 && j != i){
+					int val = triangleMatrix.get(i - 1).get(j) + triangleMatrix.get(i - 1).get(j - 1);
+					innerList.add(val); 
+				} else {
+					innerList.add(1);
+				}
+				j++;
+			}
+			triangleMatrix.add(innerList);
+		}
+
+		return triangleMatrix;
+	}
+
+	public static List<Integer> NthRowPascalsTriangle(int rowIndex){
+		
+		List<Integer> nthRowIntegers = new ArrayList<>();
+		//nthRowIntegers.add(1);
+		for(int i = 0; i < rowIndex; i++){
+			for(int j = nthRowIntegers.size() - 1; j > 0; j--){
+				int val = nthRowIntegers.get(j) + nthRowIntegers.get(j - 1);
+				nthRowIntegers.set(j, val);
+			}
+			nthRowIntegers.add(1);
+		}
+
+		return nthRowIntegers;
+	}
+
 
 	public static int longestEqualEntries(int[] nums){
 		int longestLength = 1, j = 0, localLength = 1;
