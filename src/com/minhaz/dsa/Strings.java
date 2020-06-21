@@ -158,37 +158,43 @@ public class Strings {
         return String.copyValueOf(arr);
     }
 
-    /*
-     * public static List<String> allMnemonicsOfAPhoneNumber(int num){ List<String>
-     * mnemonics = new ArrayList<>(); Map<Integer, String> assocLetters =
-     * Stream.of(new Object[][]{ {0, 0}, {1, 1}, {2, "ABC"}, {3, "DEF"}, {4, "GHI"},
-     * {5, "JKL"}, {6, "MNO"}, {7, "PQRS"}, {8, "TUV"}, {9, "WXYZ"}
-     * }).collect(Collectors.toMap(data -> (Integer) data[0], data -> (String)
-     * data[1]));
-     * 
-     * StringBuilder sb = new StringBuilder(); while(num != 0){ int rem = num % 10;
-     * String letterSet = (String) assocLetters.get(rem); if(letterSet != "0" &&
-     * letterSet != "1"){
-     * 
-     * } else { sb.append(letterSet); } }
-     * 
-     * }
-     */
+    public static List<String> phoneMnemonic(String phoneNumber) {
+        List<String> mnemonics = new ArrayList<>();
+        Map<Integer, String> mapping = Stream
+                .of(new Object[][] { { 0, "0" }, { 1, "1" }, { 2, "ABC" }, { 3, "DEF" }, { 4, "GHI" }, { 5, "JKL" },
+                        { 6, "MNO" }, { 7, "PQRS" }, { 8, "TUV" }, { 9, "WXYZ" } })
+                .collect(Collectors.toMap(data -> (Integer) data[0], data -> (String) data[1]));
+
+        char[] partialMnemonic = new char[phoneNumber.length()];
+        phoneMnemonicHelper(mapping, partialMnemonic, 0, phoneNumber, mnemonics);
+        return mnemonics;
+    }
+
+    // T(n) = O(4^nn)
+    private static void phoneMnemonicHelper(Map<Integer, String> mapping, char[] partialMnemonic, int digit,
+            String phoneNumber, List<String> mnemonics) {
+        if (digit == phoneNumber.length()) {
+            mnemonics.add(new String(partialMnemonic));
+        } else {
+            for (int i = 0; i < mapping.get(phoneNumber.charAt(digit) - '0').length(); i++) {
+                char c = mapping.get(phoneNumber.charAt(digit) - '0').charAt(i);
+                partialMnemonic[digit] = c;
+                phoneMnemonicHelper(mapping, partialMnemonic, digit + 1, phoneNumber, mnemonics);
+            }
+        }
+    }
 
     public static boolean WordSearch(char[][] board, String word) {
-        // Stack<Character> stack = new Stack<>();
-        // stack.push(word.charAt(0));
         int charIndex = 0;
         boolean flag = false;
         int[][] visited = new int[board.length][board[0].length];
+
         for (int i = 0; i < board.length && charIndex < word.length(); i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if (board[i][j] == word.charAt(charIndex)) {
                     flag = traceWord(i, j, charIndex + 1, board, word, flag, visited);
                     if (flag)
                         return flag;
-                    else
-                        charIndex = 0;
                 }
             }
         }
@@ -198,27 +204,30 @@ public class Strings {
 
     private static boolean traceWord(int r, int c, int charIndex, char[][] board, String word, boolean flag,
             int[][] visited) {
-        int UP = -1, DOWN = 1, LEFT = -1, RIGHT = 1;
 
-        if (visited[r][c] == 0) {
+        int[][] dir = { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 } };
 
-            if (charIndex == word.length())
+        if (visited[r][c] != 0)
+            return false;
+
+        if (charIndex == word.length())
+            return true;
+
+        visited[r][c] = board[r][c];
+
+        for (int[] action : dir) {
+            int row = r + action[0];
+            int col = c + action[1];
+            if (row >= 0 && row < board.length && col >= 0 && col < board[0].length
+                    && board[row][col] == word.charAt(charIndex))
+                flag = traceWord(row, col, charIndex + 1, board, word, flag, visited);
+            if (flag)
                 return true;
-
-            visited[r][c] = (int) board[r][c];
-
-            if (r + UP >= 0 && board[r + UP][c] == word.charAt(charIndex))
-                flag = traceWord(r + UP, c, charIndex + 1, board, word, flag, visited);
-
-            if (r + DOWN < board.length && board[r + DOWN][c] == word.charAt(charIndex))
-                flag = traceWord(r + DOWN, c, charIndex + 1, board, word, flag, visited);
-
-            if (c + LEFT >= 0 && board[r][c + LEFT] == word.charAt(charIndex))
-                flag = traceWord(r, c + LEFT, charIndex + 1, board, word, flag, visited);
-
-            if (c + RIGHT < board[0].length && board[r][c + RIGHT] == word.charAt(charIndex))
-                flag = traceWord(r, c + RIGHT, charIndex + 1, board, word, flag, visited);
         }
+
+        if (!flag)
+            visited[r][c] = 0;
+
         return flag;
 
     }

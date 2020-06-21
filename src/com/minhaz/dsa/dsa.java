@@ -118,7 +118,7 @@ public class dsa {
 		// System.out.println(Strings.replaceAndRemove(7, new char[] { 'a', 'b', 'c',
 		// 'd', 'b', 'c', 'f' }));
 		// System.out.println(Strings.reverseAllWordsInASentence("ram is costly"));
-		char[][] board = { { 'A', 'B', 'C', 'E' }, { 'S', 'F', 'C', 'S' }, { 'A', 'D', 'E', 'E' } };
+		char[][] board = { { 'A', 'B', 'C', 'E' }, { 'S', 'F', 'E', 'S' }, { 'A', 'D', 'E', 'E' } };
 		System.out.println(Strings.WordSearch(board, "ABCB"));
 
 		// MyClass obj = new MyClass();
